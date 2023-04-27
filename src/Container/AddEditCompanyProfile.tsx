@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Button, Container } from "reactstrap"
 import { InputField } from "../Components/BasicComponents/input-fields/InputField"
 
@@ -132,7 +132,11 @@ function AddEditCompanyProfileBase() {
         <InputField {...NameInputFieldProps} />
         <InputField {...AddressInputFieldProps} />
         <InputField {...NoOfEmpInputFieldProps} />
-        <Button onClick={() => onSubmit()}>Save</Button>
+
+        <div className="d-flex mt-5">
+          <Button className="me-3" onClick={() => onSubmit()}>Save</Button>
+          <Link to={"/"}><Button>Next</Button></Link>
+        </div>
       </Container>
     </>
   )
