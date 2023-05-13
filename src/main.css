@@ -1,5 +1,6 @@
 body, #root {
   height: 100vh;
   width: 100vw;
-  background-color: rgb(92, 92, 92);
+  background-color: rgb(44, 44, 44);
+  color: beige;
 }
