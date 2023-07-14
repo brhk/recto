@@ -1,7 +1,7 @@
 import React from "react"
 import { Label } from "./Label"
 
-export interface ICheckbox extends React.InputHTMLAttributes<HTMLInputElement> { }
+export type ICheckbox = React.InputHTMLAttributes<HTMLInputElement>
 
 export const Checkbox = function (props: ICheckbox) {
   return <input {...props} type="checkbox" />
@@ -13,10 +13,17 @@ export interface ILabeledCheckbox extends ICheckbox {
   lClassName?: string
 }
 
-export const LabeledCheckbox = function ({ label, lClassName, htmlFor, ...props }: ILabeledCheckbox) {
+export const LabeledCheckbox = function ({
+  label,
+  lClassName,
+  htmlFor,
+  ...props
+}: ILabeledCheckbox) {
   return (
     <>
-      <Label className={lClassName} htmlFor={htmlFor}>{label}</Label>
+      <Label className={lClassName} htmlFor={htmlFor}>
+        {label}
+      </Label>
       <Checkbox {...props} />
     </>
   )

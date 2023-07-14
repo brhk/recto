@@ -1,7 +1,7 @@
 import React from "react"
 import { Label } from "./Label"
 
-export interface IRadio extends React.InputHTMLAttributes<HTMLInputElement> { }
+export type IRadio = React.InputHTMLAttributes<HTMLInputElement>
 
 export const Radio = function (props: IRadio) {
   return <input {...props} type="radio" />
@@ -13,10 +13,17 @@ export interface ILabeledRadio extends IRadio {
   lClassName?: string
 }
 
-export const LabeledRadio = function ({ label, lClassName, htmlFor, ...props }: ILabeledRadio) {
+export const LabeledRadio = function ({
+  label,
+  lClassName,
+  htmlFor,
+  ...props
+}: ILabeledRadio) {
   return (
     <>
-      <Label className={lClassName} htmlFor={htmlFor}>{label}</Label>
+      <Label className={lClassName} htmlFor={htmlFor}>
+        {label}
+      </Label>
       <Radio {...props} />
     </>
   )

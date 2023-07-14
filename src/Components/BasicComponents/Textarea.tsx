@@ -1,7 +1,7 @@
 import React from "react"
 import { Label } from "./Label"
 
-export interface ITextarea extends React.TextareaHTMLAttributes<HTMLTextAreaElement> { }
+export type ITextarea = React.TextareaHTMLAttributes<HTMLTextAreaElement>
 
 export const Textarea = function (props: ITextarea) {
   return <textarea {...props} />
@@ -13,11 +13,18 @@ export interface ILabeledTextarea extends ITextarea {
   lClassName?: string
 }
 
-export const LabeledTextarea = function ({ label, lClassName, htmlFor, ...props }: ILabeledTextarea) {
+export const LabeledTextarea = function ({
+  label,
+  lClassName,
+  htmlFor,
+  ...props
+}: ILabeledTextarea) {
   if (htmlFor) {
     return (
       <>
-        <Label className={lClassName} htmlFor={htmlFor}>{label}</Label>
+        <Label className={lClassName} htmlFor={htmlFor}>
+          {label}
+        </Label>
         <Textarea {...props} />
       </>
     )

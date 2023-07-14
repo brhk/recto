@@ -6,12 +6,7 @@
     "module": "esnext",
     "target": "es5",
     "jsx": "preserve",
-    "lib": [
-      "es5",
-      "es6",
-      "dom",
-      "es2018"
-    ],
+    "lib": ["es5", "es6", "dom", "es2018"],
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -22,14 +17,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "allowJs": true,
-    "noImplicitThis": false,
+    "noImplicitThis": false
   },
-  "include": [
-    "./src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*.spec.ts",
-    "dist"
-  ]
+  "include": ["./src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts", "dist"]
 }

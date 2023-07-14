@@ -1,7 +1,7 @@
 import React from "react"
 import { Label } from "./Label"
 
-export interface IInput extends React.InputHTMLAttributes<HTMLInputElement> { }
+export type IInput = React.InputHTMLAttributes<HTMLInputElement>
 
 export const Input = function (props: IInput) {
   return <input {...props} />
@@ -13,11 +13,18 @@ export interface ILabeledInput extends IInput {
   lClassName?: string
 }
 
-export const LabeledInput = function ({ label, lClassName, htmlFor, ...props }: ILabeledInput) {
+export const LabeledInput = function ({
+  label,
+  lClassName,
+  htmlFor,
+  ...props
+}: ILabeledInput) {
   if (htmlFor) {
     return (
       <>
-        <Label className={lClassName} htmlFor={htmlFor}>{label}</Label>
+        <Label className={lClassName} htmlFor={htmlFor}>
+          {label}
+        </Label>
         <Input {...props} />
       </>
     )

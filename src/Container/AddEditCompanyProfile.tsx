@@ -4,16 +4,16 @@ import { Button, Container } from "reactstrap"
 import { LabeledInputMemo } from "../Components/BasicComponents/Input"
 
 interface ICompany {
-  name: string,
-  address: string,
-  noOfEmp: string,
+  name: string
+  address: string
+  noOfEmp: string
 }
 
 // type CompanySessionStorage = {
 //   signUp: "CompanySignUpData"
 // }
 
-const onChangeWrapper = function (callback: Function) {
+const onChangeWrapper = function (callback: React.Dispatch<string>) {
   return function (e: React.ChangeEvent<HTMLInputElement>) {
     const value = e.target.value
     callback(value)
@@ -36,7 +36,7 @@ const hookClearSessionDataDataOnReload = function () {
   }
 }
 
-const initializeCompayFields = function () {
+const UseInitializeCompayFields = function () {
   console.log("Called initializeCompayFields ")
   const prevState = getStoredCompanyState()
 
@@ -51,25 +51,22 @@ const initializeCompayFields = function () {
     address,
     setAddress,
     noOfEmp,
-    setNoOfEmp
+    setNoOfEmp,
   }
 }
 
 function AddEditCompanyProfileBase(): React.ReactElement {
   hookClearSessionDataDataOnReload()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
-  const {
-    name,
-    setName,
-    address,
-    setAddress,
-    noOfEmp,
-    setNoOfEmp
-  } = initializeCompayFields()
+  const { name, setName, address, setAddress, noOfEmp, setNoOfEmp } =
+    UseInitializeCompayFields()
 
   const onSubmit = function () {
-    setTimeout(() => storeCompanyState({ data: { name, address, noOfEmp } }), 5000)
+    setTimeout(
+      () => storeCompanyState({ data: { name, address, noOfEmp } }),
+      5000
+    )
 
     // return navigate("/")
   }
@@ -80,7 +77,7 @@ function AddEditCompanyProfileBase(): React.ReactElement {
     address,
     setAddress,
     noOfEmp,
-    setNoOfEmp
+    setNoOfEmp,
   })
 
   const defaulInputProps = useMemo(() => {
@@ -103,28 +100,28 @@ function AddEditCompanyProfileBase(): React.ReactElement {
         ...style,
         label: "No. of Employees",
         onChange: onChangeWrapper(setNoOfEmp),
-      }
+      },
     }
   }, [])
 
   const NameInputFieldProps = useMemo(() => {
     return {
       ...defaulInputProps.name,
-      value: name
+      value: name,
     }
   }, [name])
 
   const AddressInputFieldProps = useMemo(() => {
     return {
       ...defaulInputProps.address,
-      value: address
+      value: address,
     }
   }, [address])
 
   const NoOfEmpInputFieldProps = useMemo(() => {
     return {
       ...defaulInputProps.noOfEmp,
-      value: noOfEmp
+      value: noOfEmp,
     }
   }, [noOfEmp])
 
@@ -136,8 +133,12 @@ function AddEditCompanyProfileBase(): React.ReactElement {
         <LabeledInputMemo {...NoOfEmpInputFieldProps} />
 
         <div className="d-flex mt-5">
-          <Button className="me-3" onClick={() => onSubmit()}>Save</Button>
-          <Link to={"/"}><Button>Next</Button></Link>
+          <Button className="me-3" onClick={() => onSubmit()}>
+            Save
+          </Button>
+          <Link to={"/"}>
+            <Button>Next</Button>
+          </Link>
         </div>
       </Container>
     </>
