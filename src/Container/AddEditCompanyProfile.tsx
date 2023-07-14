@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { Button, Container } from "reactstrap"
-import { InputField } from "../Components/BasicComponents/input-fields/InputField"
+import { LabeledInputMemo } from "../Components/BasicComponents/Input"
 
 interface ICompany {
   name: string,
@@ -21,6 +21,7 @@ const onChangeWrapper = function (callback: Function) {
 }
 
 const storeCompanyState = function ({ data }: { data: ICompany }) {
+  console.log("storeCompanyState")
   sessionStorage.setItem("companyFields", JSON.stringify(data))
 }
 
@@ -54,7 +55,7 @@ const initializeCompayFields = function () {
   }
 }
 
-function AddEditCompanyProfileBase() {
+function AddEditCompanyProfileBase(): React.ReactElement {
   hookClearSessionDataDataOnReload()
   const navigate = useNavigate()
 
@@ -68,8 +69,9 @@ function AddEditCompanyProfileBase() {
   } = initializeCompayFields()
 
   const onSubmit = function () {
-    storeCompanyState({ data: { name, address, noOfEmp } })
-    return navigate("/")
+    setTimeout(() => storeCompanyState({ data: { name, address, noOfEmp } }), 5000)
+
+    // return navigate("/")
   }
 
   console.log({
@@ -89,17 +91,17 @@ function AddEditCompanyProfileBase() {
     return {
       name: {
         ...style,
-        label: { title: "Name" },
+        label: "Name",
         onChange: onChangeWrapper(setName),
       },
       address: {
         ...style,
-        label: { title: "Address" },
+        label: "Address",
         onChange: onChangeWrapper(setAddress),
       },
       noOfEmp: {
         ...style,
-        label: { title: "No. of Employees" },
+        label: "No. of Employees",
         onChange: onChangeWrapper(setNoOfEmp),
       }
     }
@@ -129,9 +131,9 @@ function AddEditCompanyProfileBase() {
   return (
     <>
       <Container className="d-flex flex-column justify-content-center align-items-center h-100">
-        <InputField {...NameInputFieldProps} />
-        <InputField {...AddressInputFieldProps} />
-        <InputField {...NoOfEmpInputFieldProps} />
+        <LabeledInputMemo {...NameInputFieldProps} />
+        <LabeledInputMemo {...AddressInputFieldProps} />
+        <LabeledInputMemo {...NoOfEmpInputFieldProps} />
 
         <div className="d-flex mt-5">
           <Button className="me-3" onClick={() => onSubmit()}>Save</Button>
