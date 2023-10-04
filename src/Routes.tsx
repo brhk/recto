@@ -3,6 +3,7 @@ import { PageNotFound } from "./Components/PageNotFound"
 import { AddEditCompanyProfile } from "./Container/AddEditCompanyProfile"
 import { DigitalClock } from "./Container/DigitalClock"
 import { Home } from "./Container/Home"
+import { PokemonDashboard } from "./Container/PokemonDashboard"
 import { Register } from "./Container/Register"
 
 export const AppRoutes = function () {
@@ -13,6 +14,7 @@ export const AppRoutes = function () {
       <Route path="/register/:token" element={<AddEditCompanyProfile />} />
       <Route path="/company" element={<AddEditCompanyProfile />} />
       <Route path="/clock" element={<DigitalClock />} />
+      <Route path="/pokemon/dashboard" element={<PokemonDashboard />} />
       <Route path="*" element={<PageNotFound />} />
     </Routes>
   )
